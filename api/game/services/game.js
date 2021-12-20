@@ -7,6 +7,7 @@
 
 const axios = require("axios");
 const slugify = require("slugify");
+const qs = require("querystring");
 
 function Exception(e) {
   return { e, data: e.data && e.data.errors && e.data.errors}
@@ -158,7 +159,9 @@ module.exports = {
   // pegando dados com um fetch na API
   populate: async (params) => {
     try {
-      const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&page=1&search=games&sort=popularity`
+      const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&${qs.stringify(
+        params
+      )}`;
       const { data: { products } } = await axios.get(gogApiUrl);
 
       await createManyToManyData(products);
