@@ -2,12 +2,15 @@
   "kind": "collectionType",
   "collectionName": "games",
   "info": {
-    "name": "game"
+    "name": "game",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",
@@ -54,7 +57,8 @@
         "images"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "gallery": {
       "collection": "file",
@@ -63,7 +67,8 @@
         "images"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "categories": {
       "collection": "category",
