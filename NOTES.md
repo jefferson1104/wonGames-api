@@ -8,4 +8,7 @@ curl -X POST http://localhost:1337/games/populate\?page\=1
 curl -X POST http://localhost:1337/games/populate\?page\=1\&search\=cyberpunk
 
 
+curl -X POST http://localhost:1337/games/populate?sort=rating&price=free
+
+
 ```
