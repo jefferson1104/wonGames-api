@@ -33,6 +33,18 @@ module.exports = {
       }
     }
 
-    return games
+    // somando o valor total de games
+    const total = games.reduce((acc, game) => {
+      return acc + game.price
+    }, 0)
+
+    // tratando quando o valor total de games for zero
+    if (total === 0) {
+      return {
+        freeGames: true
+      }
+    }
+
+    return { total_in_cents: total * 100, games }
   }
 }
