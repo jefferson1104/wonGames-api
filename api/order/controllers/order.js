@@ -25,6 +25,14 @@ module.exports = {
       })
     )
 
+    // retorna 404 se o jogo nao existir
+    if (!games.length) {
+      ctx.response.status = 404
+      return {
+        error: "No valid games found!"
+      }
+    }
+
     return games
   }
-};
+}
