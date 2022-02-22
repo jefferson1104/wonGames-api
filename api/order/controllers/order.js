@@ -6,7 +6,25 @@
  */
 
 module.exports = {
-  createPaymentIntent: () => {
-    return "hello world!";
+  createPaymentIntent: async (ctx) => {
+    const { cart } = ctx.request.body
+
+    let games = []
+
+    await Promise.all(
+      cart?.map( async (game) => {
+        // verifica se o jogo existe e se é valido
+        const validatedGame = await strapi.services.game.findOne({
+          id: game.id
+        })
+
+        // se o jogo for valido faz um push no array games
+        if (validatedGame) {
+          games.push(validatedGame)
+        }
+      })
+    )
+
+    return games
   }
 };
