@@ -1,9 +1,6 @@
 'use strict';
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
+const stripe = require("stripe")(process.env.STRIPE_KEY)
 
 module.exports = {
   createPaymentIntent: async (ctx) => {
@@ -45,6 +42,19 @@ module.exports = {
       }
     }
 
-    return { total_in_cents: total * 100, games }
+    // criando paymentIntent
+    try {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(total * 100),
+        currency: "usd",
+        metadata: { integration_check: "accept_a_payment" }
+      })
+
+      return paymentIntent
+    } catch (err) {
+      return {
+        error: err.raw.message
+      }
+    }
   }
 }
