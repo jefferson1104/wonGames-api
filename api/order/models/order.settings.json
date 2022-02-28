@@ -19,10 +19,6 @@
     "games": {
       "collection": "game"
     },
-    "total_in_cents": {
-      "type": "string",
-      "required": true
-    },
     "payment_intent_id": {
       "type": "string"
     },
@@ -31,6 +27,10 @@
     },
     "card_last4": {
       "type": "string"
+    },
+    "total_in_cents": {
+      "required": true,
+      "type": "biginteger"
     }
   }
 }
