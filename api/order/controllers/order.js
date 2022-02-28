@@ -63,6 +63,11 @@ module.exports = {
     const { cart, paymentIntentId, paymentMethod } = ctx.request.body
 
     // pegando dados do usuario
+    const token = await strapi.plugins["users-permissions"].services.jwt.getToken(ctx)
+    const userId = token.id
+
+    const userInfo = await strapi.query("user", "users-permissions").findOne({ id: userId })
+
     // pegando dados dos jogos
     // pegando o total (saber se a compra é free ou não)
     // pegando o paymentIntentId
@@ -72,6 +77,6 @@ module.exports = {
 
     // enviar um email sobre a compra para o usuario
 
-    return { cart, paymentIntentId, paymentMethod }
+    return { cart, paymentIntentId, paymentMethod, userInfo }
   }
 }
