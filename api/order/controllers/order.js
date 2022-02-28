@@ -2,7 +2,6 @@
 
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const { sanitizeEntity } = require("strapi-utils");
-const orderTemplate = require('../../../config/email-templates/order');
 
 module.exports = {
   createPaymentIntent: async (ctx) => {
@@ -89,20 +88,24 @@ module.exports = {
     const entity = await strapi.services.order.create(entry);
 
     // enviar um email sobre a compra para o usuario
-    await strapi.plugins.email.services.email.sendTemplatedEmail({
-      to: userInfo.email,
-      from: 'no-reply@wongames.com',
-    },
-    orderTemplate,
-    {
-      user: userInfo,
-      payment: {
-        total: `$ ${total_in_cents / 100}`,
-        card_brand: entry.card_brand,
-        card_last4: entry.card_last4
+    await strapi.plugins["email-designer"].services.email.sendTemplatedEmail(
+      {
+        to: userInfo.email,
+        from: "no-reply@wongames.com",
       },
-      games
-    });
+      {
+        templateId: 1,
+      },
+      {
+        user: userInfo,
+        payment: {
+          total: `$ ${total_in_cents / 100}`,
+          card_brand: entry.card_brand,
+          card_last4: entry.card_last4,
+        },
+        games,
+      }
+    );
 
     // retornando o que foi salvo no banco de dados
     return sanitizeEntity(entity, { model: strapi.models.order });
