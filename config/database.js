@@ -9,7 +9,8 @@ module.exports = ({ env }) => ({
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'wongames'),
         username: env('DATABASE_USERNAME', 'wongames'),
-        password: env('DATABASE_PASSWORD', 'wongames123')
+        password: env('DATABASE_PASSWORD', 'wongames123'),
+        ssl: env.bool('DATABASE_SSL', false),
       },
       options: {}
     },
