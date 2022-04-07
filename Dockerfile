@@ -14,8 +14,10 @@ RUN npx browserslist@latest --update-db
 # O COMANDO ABAIXO COPIA TODAS AS PASTAS E ARQUIVOS PARA DENTRO DA IMAGEM
 COPY . .
 
+# VARIAVEIS DE AMBIENTE
 ENV NODE_ENV production
 ENV DATABASE_CLIENT=postgres
+ENV ADMIN_JWT_SECRET=0z25DjnjcXjvFMJmTIR0/BCKh6Jxevfrbp4nJcC40+Nl5n7rFmz52qeWrjNoxhZ3RafmzCh/vKrGcrsSsXiSag==
 
 RUN yarn build
 
