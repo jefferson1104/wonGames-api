@@ -13,7 +13,7 @@ RUN npx browserslist@latest --update-db
 
 # O COMANDO ABAIXO COPIA TODAS AS PASTAS E ARQUIVOS PARA DENTRO DA IMAGEM
 COPY . .
-ADD ./public ./
+ADD public ./
 
 # VARIAVEIS DE AMBIENTE
 ENV NODE_ENV production
