@@ -6,6 +6,7 @@ WORKDIR /opt/app
 # OS DOIS COMANDOS ABAIXO COPIA O package.json E yarn.lcok PARA DENTRO DA IAMGEM
 COPY ./package.json ./
 COPY ./yarn.lock ./
+COPY
 
 RUN yarn install --prod
 
@@ -13,6 +14,7 @@ RUN npx browserslist@latest --update-db
 
 # O COMANDO ABAIXO COPIA TODAS AS PASTAS E ARQUIVOS PARA DENTRO DA IMAGEM
 COPY . .
+ADD ./public/uploads ./public
 
 # VARIAVEIS DE AMBIENTE
 ENV NODE_ENV production
