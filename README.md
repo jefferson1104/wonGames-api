@@ -16,23 +16,17 @@
 This is the back-end repository (API) of the Won Games platform, Won Games is an online game marketplace, where you can buy and download your games, the development of this API was done with Javascript and NodeJS technologies using Strapi .
 
 ### :cyclone: How to run this project
-Before starting this project, you must have a docker container with postgresSQL or have postgresSQL installed on your machine where the project will run.
+Before starting this project, you must have a docker container with postgresSQL or have postgresSQL installed on your machine where the project will run. The database access settings for the development environment are in the **wonGames-api/config/env/development/database.js**
 
-The database access settings for the development environment are in the **database.js** file
-
-> **PATH**: wonGames-api/config/env/development/database.js
+> **ATENTION**: We have a repository that contains a backup of the database and we teach you to build a docker container with this backup, [CLIQUE HERE](https://github.com/jefferson1104/wonGames-database)
 ```bash
+# After running your container with the database backup
+
 # Clone this repository
 $ git clone https://github.com/jefferson1104/wonGames-api
 
 # Access the project folder
 $ cd wonGames-api
-
-# Get docker database container 
-$ docker-compose pull
-
-# Run database container
-$ docker-compose up -d
 
 # Install dependencies
 $ yarn
@@ -46,9 +40,6 @@ $ yarn develop
 # Login
 USER: jefferson1104junior@gmail.com
 PSWD: Wongames123
-
-# IF NECESSARY GENERATE JWT-ADMIN-TOKEN
-$ node -e "console.log(require('crypto').randomBytes(64).toString('base64'))"
 ```
 ### 🎨 Screenshots
 <p align="center">
